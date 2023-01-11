@@ -20,13 +20,34 @@ public class ManejoArchivos {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        File archivo = new File("archivo.txt");
+        File directorio = new File("carpeta");
+        directorio.mkdir();
+        File archivo = new File(directorio,"archivo.txt");
+        if(archivo.exists()){
+            System.out.println("El archivo ya existe...eliminando");
+            archivo.delete();
+        }
+        else{
+            System.out.println("El archivo no existe");
+        }
         try {
             archivo.createNewFile();
+            System.out.println("Creando archivo...");
         } catch (IOException ex) {
             System.out.println("Error en la creación del archivo");
         }
-        System.out.println(archivo);
+        System.out.println(archivo.getAbsolutePath());
+        System.out.println(archivo.getPath());
+        
+        System.out.println("Elementos en directorio");
+        for(String elemento:directorio.list()){
+            System.out.println(elemento);
+        }
+        
+        System.out.println("files en directorio");
+        for(File elemento:directorio.listFiles()){
+            System.out.println(elemento);
+        }
     }
     
 }
